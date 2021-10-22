@@ -12,19 +12,6 @@ const day8 = document.querySelector(".day8");
 
 const soundClock = new Audio("sounds/clockStrike.wav");
 
-const intervalTime = setInterval(function () {
-  const timeNow = new Date();
-  let hourNow = (timeNow.getHours() < 10 ? "0" : "") + timeNow.getHours();
-  let minNow = (timeNow.getMinutes() < 10 ? "0" : "") + timeNow.getMinutes();
-  let secNow = (timeNow.getSeconds() < 10 ? "0" : "") + timeNow.getSeconds();
-  if (minNow == 00 && secNow == 00) {
-    return (
-      soundClock.play() &&
-      (hourLabel.innerHTML = `${hourNow}:${minNow}:${secNow}`)
-    );
-  } else return (hourLabel.innerHTML = `${hourNow}:${minNow}:${secNow}`);
-}, 1000);
-
 const changeDay = () => {
   let todayDay = timeNow.getDay();
   if (todayDay === 1) return (day1.style.color = "white");
@@ -36,3 +23,21 @@ const changeDay = () => {
   if (todayDay === 7) return (day7.style.color = "white");
 };
 changeDay();
+
+function intervalTime() {
+  const timeNow = new Date();
+  let hourNow = (timeNow.getHours() < 10 ? "0" : "") + timeNow.getHours();
+  let minNow = (timeNow.getMinutes() < 10 ? "0" : "") + timeNow.getMinutes();
+  let secNow = (timeNow.getSeconds() < 10 ? "0" : "") + timeNow.getSeconds();
+  if (minNow == 00 && secNow == 00) {
+    return (
+      soundClock.play() &&
+      (hourLabel.innerHTML = `${hourNow}:${minNow}:${secNow}`)
+    );
+  }
+  if (hourNow == 00 && minNow == 00 && secNow == 00) {
+    changeDay();
+  } else return (hourLabel.innerHTML = `${hourNow}:${minNow}:${secNow}`);
+}
+
+const createClock = setInterval(intervalTime, 1000);
