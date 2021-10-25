@@ -50,3 +50,13 @@ footer {
   text-align: center;
   bottom: 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 350px;
+    transform: translate(-50%, -180px);
+  }
+  .clock {
+    font-size: 40px;
+  }
+}
