@@ -30,11 +30,10 @@ function intervalTime() {
   let minNow = (timeNow.getMinutes() < 10 ? "0" : "") + timeNow.getMinutes();
   let secNow = (timeNow.getSeconds() < 10 ? "0" : "") + timeNow.getSeconds();
   if (minNow == 00 && secNow == 00) {
-    return (
-      soundClock.play() &&
-      (hourLabel.innerHTML = `${hourNow}:${minNow}:${secNow}`)
-    );
-  } else if (hourNow == 00 && minNow == 00 && secNow == 00) {
+    soundClock.play() &&
+      (hourLabel.innerHTML = `${hourNow}:${minNow}:${secNow}`);
+  }
+  if (hourNow == 00 && minNow == 00 && secNow == 00) {
     changeDay();
   }
   return (hourLabel.innerHTML = `${hourNow}:${minNow}:${secNow}`);
